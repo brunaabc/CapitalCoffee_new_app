@@ -18,18 +18,37 @@ export default function CadastroScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const cadastrar = async () => {
     setErro("");
+
     if (!nome.trim()) {
       setErro("Por favor, insira seu nome.");
       return;
     }
+    if (!email.includes("@") || !email.includes(".")) {
+      setErro("Por favor, insira um e-mail válido.");
+      return;
+    }
+
+    const senhaForteRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{6,}$/;
+    if (!senhaForteRegex.test(senha)) {
+      setErro(
+        "A senha deve ter no mínimo 6 caracteres, conter número e símbolo especial."
+      );
+      return;
+    }
+
+    setLoading(true);
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
-      // Atualizar o displayName com o nome
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        senha
+      );
       await updateProfile(userCredential.user, { displayName: nome });
-      navigation.replace("Home");
+      navigation.replace("Home"); 
     } catch (err) {
       console.error("Firebase Cadastro Error:", err.code, err.message);
       if (err.code === "auth/email-already-in-use") {
@@ -37,10 +56,12 @@ export default function CadastroScreen({ navigation }) {
       } else if (err.code === "auth/invalid-email") {
         setErro("E-mail inválido.");
       } else if (err.code === "auth/weak-password") {
-        setErro("A senha deve ter pelo menos 6 caracteres.");
+        setErro("A senha deve atender aos critérios de segurança.");
       } else {
         setErro("Erro ao cadastrar. Tente novamente.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,6 +89,7 @@ export default function CadastroScreen({ navigation }) {
             placeholder="Nome"
             placeholderTextColor="#A1816A"
             autoCapitalize="words"
+            autoCorrect={false}
             value={nome}
             onChangeText={setNome}
           />
@@ -79,6 +101,8 @@ export default function CadastroScreen({ navigation }) {
             placeholderTextColor="#A1816A"
             keyboardType="email-address"
             autoCapitalize="none"
+            autoCorrect={false}
+            textContentType="emailAddress"
             value={email}
             onChangeText={setEmail}
           />
@@ -89,14 +113,23 @@ export default function CadastroScreen({ navigation }) {
             placeholder="Senha"
             placeholderTextColor="#A1816A"
             secureTextEntry
+            autoCapitalize="none"
+            autoCorrect={false}
+            textContentType="password"
             value={senha}
             onChangeText={setSenha}
           />
 
           {erro ? <Text style={styles.errorMessage}>{erro}</Text> : null}
 
-          <TouchableOpacity style={styles.button} onPress={cadastrar}>
-            <Text style={styles.buttonText}>Cadastrar</Text>
+          <TouchableOpacity
+            style={[styles.button, loading && { opacity: 0.6 }]}
+            onPress={cadastrar}
+            disabled={loading}
+          >
+            <Text style={styles.buttonText}>
+              {loading ? "Cadastrando..." : "Cadastrar"}
+            </Text>
           </TouchableOpacity>
 
           <View style={styles.loginRedirect}>

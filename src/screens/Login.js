@@ -9,6 +9,7 @@ import {
   Platform,
   StatusBar,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
@@ -17,9 +18,11 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [carregando, setCarregando] = useState(false); 
 
   const login = async () => {
     setErro("");
+    setCarregando(true); // ativa o spinner
     try {
       await signInWithEmailAndPassword(auth, email, senha);
       navigation.replace("Home");
@@ -40,6 +43,8 @@ export default function LoginScreen({ navigation }) {
       } else {
         setErro("Ocorreu um erro ao tentar fazer login. Tente novamente.");
       }
+    } finally {
+      setCarregando(false); // desativa o spinner
     }
   };
 
@@ -84,8 +89,16 @@ export default function LoginScreen({ navigation }) {
 
           {erro ? <Text style={styles.errorMessage}>{erro}</Text> : null}
 
-          <TouchableOpacity style={styles.loginButton} onPress={login}>
-            <Text style={styles.loginButtonText}>Entrar</Text>
+          <TouchableOpacity
+            style={[styles.loginButton, carregando && { opacity: 0.7 }]}
+            onPress={login}
+            disabled={carregando}
+          >
+            {carregando ? (
+              <ActivityIndicator size="small" color="#5d2c04" />
+            ) : (
+              <Text style={styles.loginButtonText}>Entrar</Text>
+            )}
           </TouchableOpacity>
 
           <View style={styles.createAccountContainer}>
@@ -102,11 +115,11 @@ export default function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Preenche toda a tela
+    flex: 1,
     backgroundColor: "#F2E6DB",
   },
   scrollContent: {
-    flexGrow: 1, // Permite o scroll ocupar toda altura necessária
+    flexGrow: 1,
     justifyContent: "flex-start",
     paddingHorizontal: 0,
   },
@@ -132,10 +145,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     alignItems: "center",
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: -3,
-    },
+    shadowOffset: { width: 0, height: -3 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 5,

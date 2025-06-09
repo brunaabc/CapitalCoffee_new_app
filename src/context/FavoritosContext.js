@@ -1,19 +1,41 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../services/firebaseConfig';
+import { getUserFavorites, addFavorite, removeFavorite } from '../services/firebaseFavorites';
 
 export const FavoritosContext = createContext();
 
 export const FavoritosProvider = ({ children }) => {
   const [favoritos, setFavoritos] = useState([]);
+  const [userId, setUserId] = useState(null);
 
-  const toggleFavorito = (cafe) => {
-    setFavoritos((prev) => {
-      const existe = prev.find((item) => item.id === cafe.id);
-      if (existe) {
-        return prev.filter((item) => item.id !== cafe.id);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserId(user.uid);
+        const favoritosSalvos = await getUserFavorites(user.uid);
+        setFavoritos(favoritosSalvos);
       } else {
-        return [...prev, cafe];
+        setUserId(null);
+        setFavoritos([]);
       }
     });
+
+    return unsubscribe;
+  }, []);
+
+  const toggleFavorito = async (cafe) => {
+    if (!userId) return;
+
+    const jaFavoritado = favoritos.some((item) => item.id === cafe.id);
+
+    if (jaFavoritado) {
+      await removeFavorite(userId, cafe.id);
+      setFavoritos((prev) => prev.filter((item) => item.id !== cafe.id));
+    } else {
+      await addFavorite(userId, cafe);
+      setFavoritos((prev) => [...prev, cafe]);
+    }
   };
 
   return (

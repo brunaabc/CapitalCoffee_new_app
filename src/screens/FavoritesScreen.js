@@ -29,6 +29,7 @@ const FavoritosScreen = ({ navigation }) => {
           <Text style={styles.cafeName}>{cafe.nome}</Text>
           <Text style={styles.cafeSubname}>{cafe.subtitulo}</Text>
         </View>
+        
       ))}
     </ScrollView>
   );
@@ -37,8 +38,18 @@ const FavoritosScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#e6ccb2', padding: 20, paddingTop: 50 },
   title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#5d2c04', textAlign: 'center' },
-  card: { backgroundColor: '#d8b49c', padding: 10, borderRadius: 20, marginBottom: 20 },
-  cardImage: { width: '100%', height: 160, borderRadius: 10 },
+  card: { backgroundColor: '#d8b49c',
+    borderRadius: 20,
+    marginBottom: 20,
+    marginHorizontal: 20,
+    padding: 10,
+    width: 600,
+    alignSelf: 'center' },
+  cardImage: { width: 350,
+    height: 200,
+    borderRadius: 10,
+    marginBottom: 1,
+    alignSelf: 'center', },
   cafeName: { fontSize: 16, fontWeight: 'bold', color: '#5d2c04' },
   cafeSubname: { fontSize: 14, color: '#5d2c04' },
   emptyText: { textAlign: 'center', fontSize: 16, marginTop: 100, color: '#5d2c04' },

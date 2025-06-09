@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { FontAwesome, MaterialIcons } from '@expo/vector-icons'; // Ícones via Expo
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { FavoritosContext } from '../context/FavoritosContext';
 
 const cafes = [
@@ -9,56 +9,61 @@ const cafes = [
     nome: 'Aloom',
     subtitulo: 'The Wow Lab',
     local: 'Asa Sul',
-    imagem: require('../img/aloom2.webp'), // Imagem estática funciona no Expo
+    imagem: require('../img/aloom2.webp'),
   },
- {
+  {
     id: '2',
     nome: 'Bimi',
     local: 'Asa Norte',
-    imagem: require('../img/bimicafe.png'), // Imagem estática funciona no Expo
+    imagem: require('../img/bimicafe.png'),
   },
   {
     id: '3',
     nome: 'Oliva Café',
     local: 'Noroeste',
-    imagem: require('../img/olivacafe1.webp'), // Imagem estática funciona no Expo
+    imagem: require('../img/olivacafe1.webp'),
   },
   {
     id: '4',
     nome: 'Acervo Café',
     local: 'Casa Park',
-    imagem: require('../img/acervocafe.webp'), // Imagem estática funciona no Expo
+    imagem: require('../img/acervocafe.webp'),
   },
   {
     id: '6',
     nome: 'Ernesto',
     subtitulo: 'Cafés Especiais',
     local: 'Asa Sul',
-    imagem: require('../img/ernesto.jpeg'), // Imagem estática funciona no Expo
+    imagem: require('../img/ernesto.jpeg'),
   },
   {
     id: '7',
     nome: 'Casa de Chá',
     local: 'Praça dos Três Poderes',
-    imagem: require('../img/casadecha.jpeg'), // Imagem estática funciona no Expo
+    imagem: require('../img/casadecha.jpeg'),
   },
-   {
+  {
     id: '8',
     nome: 'Chico',
     subtitulo: 'Banca e Café',
     local: 'Asa Sul',
-    imagem: require('../img/chicocafe.webp'), // Imagem estática funciona no Expo
+    imagem: require('../img/chicocafe.webp'),
   },
-     {
+  {
     id: '9',
     nome: 'Café e um Cherô',
     local: 'Asa Norte',
-    imagem: require('../img/cafechero.webp'), // Imagem estática funciona no Expo
+    imagem: require('../img/cafechero.webp'),
   },
 ];
 
 const HomeScreen = ({ navigation }) => {
   const { favoritos, toggleFavorito } = useContext(FavoritosContext);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleReload = () => {
+    setRefreshKey(prev => prev + 1);
+  };
 
   const isFavorito = (id) => favoritos.some((c) => c.id === id);
 
@@ -66,7 +71,7 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       {/* Botões de navegação */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.navButton}>
+        <TouchableOpacity style={styles.navButton} onPress={handleReload}>
           <FontAwesome name="home" size={18} color="#7a4e28" />
           <Text style={styles.navText}>Início</Text>
         </TouchableOpacity>
@@ -81,7 +86,7 @@ const HomeScreen = ({ navigation }) => {
 
       <Text style={styles.title}>Cafeterias</Text>
 
-      <ScrollView>
+      <ScrollView key={refreshKey}>
         {cafes.map((cafe) => (
           <View key={cafe.id} style={styles.card}>
             <View style={styles.imageContainer}>
@@ -126,16 +131,31 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   navText: { marginLeft: 5, color: '#7a4e28', fontWeight: 'bold' },
-  title: { fontSize: 45, fontWeight: 'bold', color: '#5d2c04', marginBottom: 10, marginHorizontal: 20, },
-  card: { backgroundColor: '#d8b49c', borderRadius: 20, marginBottom: 20,  marginHorizontal: 20, padding: 10,  width: 600,
-  alignSelf: 'center' },
+  title: {
+    fontSize: 45,
+    fontWeight: 'bold',
+    color: '#5d2c04',
+    marginBottom: 10,
+    marginHorizontal: 20,
+  },
+  card: {
+    backgroundColor: '#d8b49c',
+    borderRadius: 20,
+    marginBottom: 20,
+    marginHorizontal: 20,
+    padding: 10,
+    width: 600,
+    alignSelf: 'center',
+  },
   imageContainer: { position: 'relative' },
-  cardImage: {  width: 350,
+  cardImage: {
+    width: 350,
     height: 200,
     borderRadius: 10,
     marginBottom: 1,
-    alignSelf: 'center' },
-  heartIcon: { position: 'absolute', top: 10, right: 10 },
+    alignSelf: 'center',
+  },
+  heartIcon: { position: 'absolute', top: 200, right: 30 },
   cardContent: { marginTop: 10 },
   cafeName: { fontWeight: 'bold', fontSize: 16, color: '#5d2c04' },
   cafeSubname: { fontWeight: 'bold', fontSize: 16, color: '#5d2c04' },

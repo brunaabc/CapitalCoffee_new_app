@@ -20,24 +20,25 @@ export default function App() {
           <Stack.Screen name="Start" component={StartScreen} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Cadastro" component={RegisterScreen} />
-           <Stack.Screen
+          <Stack.Screen
             name="Home"
             component={DrawerNavigator}
             options={{ headerShown: false }}
           />
           <Stack.Screen name="Favoritos" component={FavoritosScreen} />
-           <Stack.Screen 
-          name="Perfil" 
-          component={PerfilScreen} 
-          options={{ headerShown: false }} 
-        />
-        <Stack.Screen 
-          name="EditPerfil" 
-          component={EditPefilScreen} 
-          options={{ title: 'Editar Perfil' }}
-        />
+          <Stack.Screen 
+            name="Perfil" 
+            component={PerfilScreen} 
+            options={{ headerShown: false }} 
+          />
+          <Stack.Screen 
+            name="EditPerfil" 
+            component={EditPefilScreen} 
+            options={{ title: 'Editar Perfil' }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </FavoritosProvider>
   );
 }
+

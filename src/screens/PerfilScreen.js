@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { auth } from '../services/firebaseConfig'; // ajuste o caminho conforme seu projeto
 
 export default function PerfilScreen({ navigation }) {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const user = auth.currentUser;
+
+    if (user) {
+      setNome(user.displayName || '');
+      setEmail(user.email || '');
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -14,10 +27,23 @@ export default function PerfilScreen({ navigation }) {
 
       <View style={styles.card}>
         <Text style={styles.label}>Nome</Text>
-        <TextInput placeholder="Nome" style={styles.input} />
+        <TextInput
+          value={nome}
+          onChangeText={setNome}
+          placeholder="Nome"
+          style={styles.input}
+          editable={false} // bloqueado aqui
+        />
 
         <Text style={styles.label}>E-mail</Text>
-        <TextInput placeholder="E-mail" style={styles.input} />
+        <TextInput
+          value={email}
+          placeholder="E-mail"
+          style={styles.input}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          editable={false} // bloqueado
+        />
 
         <TouchableOpacity 
           style={styles.button} 

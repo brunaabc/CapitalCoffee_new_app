@@ -9,6 +9,7 @@ import { FavoritosProvider } from "./src/context/FavoritosContext";
 import DrawerNavigator from "./src/navigation/DrawerNavigator";
 import PerfilScreen from "./src/screens/PerfilScreen";
 import EditPefilScreen from "./src/screens/EditPerfilScreen";
+import DetalhesScreen from "./src/screens/DetalhesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,14 +18,15 @@ export default function App() {
     <FavoritosProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Start">
-          <Stack.Screen name="Start" component={StartScreen} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Cadastro" component={RegisterScreen} />
+          <Stack.Screen name="Start" component={StartScreen}  options={{ headerShown: false }}/>
+          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+          <Stack.Screen name="Cadastro" component={RegisterScreen} options={{ headerShown: false }} />
           <Stack.Screen
             name="Home"
             component={DrawerNavigator}
             options={{ headerShown: false }}
           />
+          <Stack.Screen name="Detalhes" component={DetalhesScreen} options={{ headerTitle: ''}} />
           <Stack.Screen name="Favoritos" component={FavoritosScreen} />
           <Stack.Screen 
             name="Perfil" 
@@ -34,7 +36,7 @@ export default function App() {
           <Stack.Screen 
             name="EditPerfil" 
             component={EditPefilScreen} 
-            options={{ title: 'Editar Perfil' }}
+            options={{ headerTitle: ''}}
           />
         </Stack.Navigator>
       </NavigationContainer>

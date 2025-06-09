@@ -30,27 +30,27 @@ const cafes = [
     imagem: require('../img/acervocafe.webp'),
   },
   {
-    id: '6',
+    id: '5',
     nome: 'Ernesto',
     subtitulo: 'Cafés Especiais',
     local: 'Asa Sul',
     imagem: require('../img/ernesto.jpeg'),
   },
   {
-    id: '7',
+    id: '6',
     nome: 'Casa de Chá',
     local: 'Praça dos Três Poderes',
     imagem: require('../img/casadecha.jpeg'),
   },
   {
-    id: '8',
+    id: '7',
     nome: 'Chico',
     subtitulo: 'Banca e Café',
     local: 'Asa Sul',
     imagem: require('../img/chicocafe.webp'),
   },
   {
-    id: '9',
+    id: '8',
     nome: 'Café e um Cherô',
     local: 'Asa Norte',
     imagem: require('../img/cafechero.webp'),
@@ -91,6 +91,8 @@ const HomeScreen = ({ navigation }) => {
           <View key={cafe.id} style={styles.card}>
             <View style={styles.imageContainer}>
               <Image source={cafe.imagem} style={styles.cardImage} resizeMode="cover" />
+
+              {/* Botão de coração */}
               <TouchableOpacity
                 style={styles.heartIcon}
                 onPress={() => toggleFavorito(cafe)}
@@ -102,6 +104,7 @@ const HomeScreen = ({ navigation }) => {
                 />
               </TouchableOpacity>
             </View>
+
             <View style={styles.cardContent}>
               <View>
                 <Text style={styles.cafeName}>{cafe.nome}</Text>
@@ -111,6 +114,14 @@ const HomeScreen = ({ navigation }) => {
                 <MaterialIcons name="location-pin" size={18} color="#7a4e28" />
                 <Text style={styles.locationText}>{cafe.local}</Text>
               </View>
+
+              {/* Botão Ver Detalhes */}
+              <TouchableOpacity
+                style={styles.verDetalhesButton}
+                onPress={() => navigation.navigate('Detalhes', { cafeId: cafe.id })}
+              >
+                <Text style={styles.verDetalhesText}>Ver Detalhes</Text>
+              </TouchableOpacity>
             </View>
           </View>
         ))}
@@ -161,6 +172,19 @@ const styles = StyleSheet.create({
   cafeSubname: { fontWeight: 'bold', fontSize: 16, color: '#5d2c04' },
   location: { flexDirection: 'row', alignItems: 'center', marginTop: 5 },
   locationText: { marginLeft: 4, color: '#5d2c04' },
+  verDetalhesButton: {
+    marginTop: 10,
+    backgroundColor: '#7a4e28',
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 15,
+    alignSelf: 'center',
+  },
+  verDetalhesText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
 });
 
 export default HomeScreen;

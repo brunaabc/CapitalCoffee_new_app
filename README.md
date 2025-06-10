@@ -7,6 +7,7 @@ Propósito
 O principal objetivo do CapitalCoffee é ser o guia definitivo para os amantes de café em Brasília, facilitando a descoberta de novas cafeterias e o acesso a informações detalhadas sobre elas. Nosso foco é enriquecer a experiência do usuário, oferecendo um portal centralizado para explorar a vibrante cena cafeeira da cidade.
 
 Funcionalidades
+
 O CapitalCoffee foi projetado com funcionalidades essenciais para otimizar sua busca e interação com as cafeterias:
 
 • Tela de Entrada e Introdução: Uma breve introdução ao aplicativo, seguida por um botão "Continuar" que leva à tela de autenticação.

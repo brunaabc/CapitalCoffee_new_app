@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient"; // Certifique-se de ter expo-linear-gradient instalado
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function StartScreen({ navigation }) {
   return (
@@ -19,7 +19,7 @@ export default function StartScreen({ navigation }) {
 
       <View style={styles.content}>
         <Image
-          source={require("../img/logo.png")} // Substitua pelo caminho correto da imagem do ícone de café
+          source={require("../img/logo.png")} 
           style={styles.logo}
           resizeMode="contain"
         />
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 150,
     height: 150,
-    borderRadius: 75, // metade da largura/altura
+    borderRadius: 75,
     marginBottom: 30,
   },
   title: {
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#4b2e1e",
     marginBottom: 10,
-    fontFamily: "Cochin", // Ou uma fonte mais parecida com a da imagem
+    fontFamily: "Cochin", 
   },
   subtitle: {
     fontSize: 16,

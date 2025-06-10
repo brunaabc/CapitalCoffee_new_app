@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { auth } from '../services/firebaseConfig'; // ajuste o caminho conforme seu projeto
+import { auth } from '../services/firebaseConfig'; 
 
 export default function PerfilScreen({ navigation }) {
   const [nome, setNome] = useState('');

@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/drawer";
 import HomeScreen from "../screens/HomeScreen";
 import PerfilScreen from "../screens/PerfilScreen";
-import sair from "../components/sair"; // importe seu SairScreen aqui
+import sair from "../components/sair"; 
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
@@ -15,7 +15,7 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props} style={{ backgroundColor: "#ecd2ba" }}>
       <DrawerItemList {...props} />
-      {/* BotaoSair removido pois será item Drawer.Screen */}
+      
     </DrawerContentScrollView>
   );
 }

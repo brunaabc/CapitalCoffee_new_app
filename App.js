@@ -30,7 +30,7 @@ export default function App() {
           <Stack.Screen name="Favoritos" component={FavoritosScreen} options={{ headerTitle: '', headerStyle:{ backgroundColor: '#e6ccb2'} }}/>
           <Stack.Screen 
             name="Perfil" 
-            component={PerfilScreen} 
+            component={DrawerNavigator} 
             options={{ headerShown: false}}
           />
           <Stack.Screen 

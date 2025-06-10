@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { auth } from '../services/firebaseConfig'; // ajuste conforme o caminho correto
-import { updateProfile, updateEmail } from 'firebase/auth';
+import { auth } from '../services/firebaseConfig'; 
+import { updateProfile } from 'firebase/auth'; 
 
 export default function EditPerfilScreen({ navigation }) {
   const [nome, setNome] = useState('');
@@ -25,15 +25,12 @@ export default function EditPerfilScreen({ navigation }) {
       if (user.displayName !== nome) {
         await updateProfile(user, { displayName: nome });
       }
-      if (user.email !== email) {
-        await updateEmail(user, email);
-      }
 
       setSalvo(true);
 
       setTimeout(() => {
         setSalvo(false);
-        navigation.navigate('Perfil'); // volta para a tela de perfil
+        navigation.navigate('Perfil'); 
       }, 2000);
     } catch (error) {
       Alert.alert('Erro', 'Não foi possível salvar as alterações. Verifique os dados ou tente novamente.');
@@ -42,15 +39,15 @@ export default function EditPerfilScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.profileIcon}>
-              <Ionicons name="person" size={40} color="#5d2c04" />
-            </View>
-            <Text style={styles.title}>Editar perfil</Text>
-          </View>
+      <View style={styles.header}>
+        <View style={styles.profileIcon}>
+          <Ionicons name="person" size={40} color="#5d2c04" />
+        </View>
+        <Text style={styles.title}>Editar perfil</Text>
+      </View>
 
       <View style={styles.card}>
-        <Text style={styles.label}>Nome</Text>
+        <Text style={styles.label}>Alterar nome</Text>
         <TextInput
           value={nome}
           onChangeText={setNome}
@@ -61,11 +58,8 @@ export default function EditPerfilScreen({ navigation }) {
         <Text style={styles.label}>E-mail</Text>
         <TextInput
           value={email}
-          onChangeText={setEmail}
-          placeholder="E-mail"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          style={styles.input}
+          editable={false} 
+          style={[styles.input, { backgroundColor: '#d3c4b1' }]} 
         />
 
         <TouchableOpacity style={styles.button} onPress={handleSalvar}>
@@ -75,7 +69,7 @@ export default function EditPerfilScreen({ navigation }) {
         {salvo && (
           <View style={styles.successContainer}>
             <Image
-              source={require('../img/success.png')} 
+              source={require('../img/success.png')}
               style={styles.successImage}
             />
             <Text style={styles.successText}>Alterações salvas com sucesso!</Text>
@@ -97,7 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-   profileIcon: {
+  profileIcon: {
     marginVertical: 10,
   },
   title: {

@@ -24,19 +24,19 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={DrawerNavigator}
-            options={{ headerShown: false }}
+            options={{ headerShown: false}}
           />
-          <Stack.Screen name="Detalhes" component={DetalhesScreen} options={{ headerTitle: ''}} />
-          <Stack.Screen name="Favoritos" component={FavoritosScreen} />
+          <Stack.Screen name="Detalhes" component={DetalhesScreen} options={{ headerTitle: '', headerStyle:{ backgroundColor: '#e6ccb2'} }} />
+          <Stack.Screen name="Favoritos" component={FavoritosScreen} options={{ headerTitle: '', headerStyle:{ backgroundColor: '#e6ccb2'} }}/>
           <Stack.Screen 
             name="Perfil" 
             component={PerfilScreen} 
-            options={{ headerShown: false }} 
+            options={{ headerShown: false}}
           />
           <Stack.Screen 
             name="EditPerfil" 
             component={EditPefilScreen} 
-            options={{ headerTitle: ''}}
+            options={{ headerTitle: '', headerStyle:{ backgroundColor: '#e6ccb2'}}}
           />
         </Stack.Navigator>
       </NavigationContainer>

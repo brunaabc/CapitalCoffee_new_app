@@ -32,7 +32,7 @@ export default function PerfilScreen({ navigation }) {
           onChangeText={setNome}
           placeholder="Nome"
           style={styles.input}
-          editable={false} // bloqueado aqui
+          editable={false} 
         />
 
         <Text style={styles.label}>E-mail</Text>
@@ -42,7 +42,7 @@ export default function PerfilScreen({ navigation }) {
           style={styles.input}
           keyboardType="email-address"
           autoCapitalize="none"
-          editable={false} // bloqueado
+          editable={false} 
         />
 
         <TouchableOpacity 

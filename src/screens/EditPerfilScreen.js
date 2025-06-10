@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { auth } from '../services/firebaseConfig'; // ajuste o caminho conforme seu projeto
+import { auth } from '../services/firebaseConfig'; // ajuste conforme o caminho correto
+import { updateProfile, updateEmail } from 'firebase/auth';
 
 export default function EditPerfilScreen({ navigation }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [salvo, setSalvo] = useState(false);
 
   useEffect(() => {
     const user = auth.currentUser;
-
     if (user) {
       setNome(user.displayName || '');
       setEmail(user.email || '');
@@ -21,34 +21,33 @@ export default function EditPerfilScreen({ navigation }) {
     const user = auth.currentUser;
     if (!user) return;
 
-    setLoading(true);
-
     try {
-      // Atualiza o nome no perfil
-      await user.updateProfile({ displayName: nome });
-
-      // Se o email foi alterado, atualiza o email
-      if (email !== user.email) {
-        await user.updateEmail(email);
+      if (user.displayName !== nome) {
+        await updateProfile(user, { displayName: nome });
+      }
+      if (user.email !== email) {
+        await updateEmail(user, email);
       }
 
-      Alert.alert('Sucesso', 'Perfil atualizado com sucesso!');
-      navigation.goBack(); // volta para a tela anterior (PerfilScreen)
+      setSalvo(true);
+
+      setTimeout(() => {
+        setSalvo(false);
+        navigation.navigate('Perfil'); // volta para a tela de perfil
+      }, 2000);
     } catch (error) {
-      Alert.alert('Erro', error.message || 'Não foi possível atualizar o perfil.');
-    } finally {
-      setLoading(false);
+      Alert.alert('Erro', 'Não foi possível salvar as alterações. Verifique os dados ou tente novamente.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.profileIcon}>
-          <Ionicons name="person" size={40} color="#5d2c04" />
-        </View>
-        <Text style={styles.title}>Editar Perfil</Text>
-      </View>
+          <View style={styles.header}>
+            <View style={styles.profileIcon}>
+              <Ionicons name="person" size={40} color="#5d2c04" />
+            </View>
+            <Text style={styles.title}>Editar perfil</Text>
+          </View>
 
       <View style={styles.card}>
         <Text style={styles.label}>Nome</Text>
@@ -57,7 +56,6 @@ export default function EditPerfilScreen({ navigation }) {
           onChangeText={setNome}
           placeholder="Nome"
           style={styles.input}
-          editable={!loading}
         />
 
         <Text style={styles.label}>E-mail</Text>
@@ -65,24 +63,28 @@ export default function EditPerfilScreen({ navigation }) {
           value={email}
           onChangeText={setEmail}
           placeholder="E-mail"
-          style={styles.input}
           keyboardType="email-address"
           autoCapitalize="none"
-          editable={!loading}
+          style={styles.input}
         />
 
-        <TouchableOpacity 
-          style={[styles.button, loading && { opacity: 0.6 }]} 
-          onPress={handleSalvar} 
-          disabled={loading}
-        >
-          <Text style={styles.buttonText}>{loading ? 'Salvando...' : 'Salvar'}</Text>
+        <TouchableOpacity style={styles.button} onPress={handleSalvar}>
+          <Text style={styles.buttonText}>Salvar</Text>
         </TouchableOpacity>
+
+        {salvo && (
+          <View style={styles.successContainer}>
+            <Image
+              source={require('../img/success.png')} 
+              style={styles.successImage}
+            />
+            <Text style={styles.successText}>Alterações salvas com sucesso!</Text>
+          </View>
+        )}
       </View>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  profileIcon: {
+   profileIcon: {
     marginVertical: 10,
   },
   title: {
@@ -133,5 +135,19 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  successContainer: {
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  successImage: {
+    width: 80,
+    height: 80,
+    marginBottom: 10,
+  },
+  successText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

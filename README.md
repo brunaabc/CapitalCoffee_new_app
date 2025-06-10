@@ -7,17 +7,23 @@ O principal objetivo do CapitalCoffee é ser o guia definitivo para os amantes d
 
 Funcionalidades
 O CapitalCoffee foi projetado com funcionalidades essenciais para otimizar sua busca e interação com as cafeterias:
+
 • Tela de Entrada e Introdução: Uma breve introdução ao aplicativo, seguida por um botão "Continuar" que leva à tela de autenticação.
+
 • Autenticação de Usuário: 
-• Login: Acesso rápido para usuários já cadastrados com e-mail e senha.
-• Criação de Conta: Um processo simples para novos usuários, solicitando nome, e-mail e senha.
+ - Login: Acesso rápido para usuários já cadastrados com e-mail e senha.
+ - Criação de Conta: Um processo simples para novos usuários, solicitando nome, e-mail e senha.
+   
 • Exploração de Cafeterias: Ao entrar no aplicativo, você terá acesso a uma lista de opções de cafeterias para explorar.
+
 • Detalhes da Cafeteria: Clique em qualquer cafeteria para ver informações aprofundadas como descrição, horário de funcionamento e endereço.
+
 • Favoritos: Salve suas cafeterias preferidas! Os dados de favoritos são persistentes, garantindo que suas escolhas fiquem salvas mesmo após sair do app.
+
 • Menu Lateral (Drawer Navigation): 
-• Início: Retorna à tela principal de listagem de cafeterias.
-• Perfil: Acesse e edite seus dados cadastrais (nome e e-mail). Basta clicar em "Editar Perfil" e salvar as alterações.
-• Sair: Opção para fazer logout do aplicativo, com uma confirmação antes de retornar à tela de entrada.
+ - Início: Retorna à tela principal de listagem de cafeterias.
+ - Perfil: Acesse e edite seus dados cadastrais (nome e e-mail). Basta clicar em "Editar Perfil" e salvar as alterações.
+ - Sair: Opção para fazer logout do aplicativo, com uma confirmação antes de retornar à tela de entrada.
 
 Público-Alvo
 Este aplicativo é ideal para:
@@ -27,16 +33,27 @@ Este aplicativo é ideal para:
 
 Tecnologias Utilizadas
 O desenvolvimento do CapitalCoffee foi pautado na eficiência e na organização, utilizando as seguintes tecnologias e estruturas:
+
 • Firebase: Utilizado para autenticação de usuários (login, criação de conta) e para salvar os dados do usuário, incluindo as cafeterias favoritadas, garantindo persistência e segurança das informações.
-• React Native (ou framework similar com JavaScript): A estrutura de código em JavaScript indica um desenvolvimento robusto para aplicativos móveis.
+
+• React Native: A estrutura de código em JavaScript indica um desenvolvimento robusto para aplicativos móveis.
+
 • Navegação: Implementado com Drawer Navigation para o menu lateral e Native Stack Navigation para as transições entre as telas principais.
-• Estrutura de Pastas: O projeto é bem organizado em pastas dedicadas para facilitar a manutenção e o desenvolvimento: 
+
+• Estrutura de Pastas - O projeto é bem organizado em pastas dedicadas para facilitar a manutenção e o desenvolvimento: 
+
 • screens/: Contém todos os componentes de tela do aplicativo.
+
 • navigation/: Gerencia a navegação, incluindo o drawer.
+
 • img/: Armazena todas as imagens utilizadas no projeto.
+
 • Services/: Configurações e integrações com o Firebase.
+
 • hooks/: Contém lógicas reutilizáveis, como as funções de autenticação.
+
 • components/: Componentes reutilizáveis, como partes da funcionalidade de logout.
+
 • App.js: O ponto de entrada principal do aplicativo, integrando as telas e a navegação.
 
 O CapitalCoffee foi cuidadosamente desenvolvido para oferecer uma experiência agradável e funcional para todos os amantes de café em Brasília. Explore, descubra e aproveite o melhor do café que a capital tem 

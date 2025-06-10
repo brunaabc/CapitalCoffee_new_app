@@ -26,6 +26,7 @@ O CapitalCoffee foi projetado com funcionalidades essenciais para otimizar sua b
  - Sair: Opção para fazer logout do aplicativo, com uma confirmação antes de retornar à tela de entrada.
 
 Público-Alvo
+
 Este aplicativo é ideal para:
 • Amantes de Café: Indivíduos que apreciam uma boa xícara de café e buscam explorar novos sabores e ambientes.
 • Moradores de Brasília: Pessoas que residem na capital e desejam descobrir as cafeterias locais.

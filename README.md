@@ -28,11 +28,13 @@ O CapitalCoffee foi projetado com funcionalidades essenciais para otimizar sua b
 Público-Alvo
 
 Este aplicativo é ideal para:
+
 • Amantes de Café: Indivíduos que apreciam uma boa xícara de café e buscam explorar novos sabores e ambientes.
 • Moradores de Brasília: Pessoas que residem na capital e desejam descobrir as cafeterias locais.
 • Turistas: Visitantes de Brasília que procuram dicas de cafeterias para incluir em seu roteiro.
 
 Tecnologias Utilizadas
+
 O desenvolvimento do CapitalCoffee foi pautado na eficiência e na organização, utilizando as seguintes tecnologias e estruturas:
 
 • Firebase: Utilizado para autenticação de usuários (login, criação de conta) e para salvar os dados do usuário, incluindo as cafeterias favoritadas, garantindo persistência e segurança das informações.

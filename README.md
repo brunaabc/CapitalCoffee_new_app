@@ -63,4 +63,4 @@ O desenvolvimento do CapitalCoffee foi pautado na eficiência e na organização
 
 • App.js: O ponto de entrada principal do aplicativo, integrando as telas e a navegação.
 
-O CapitalCoffee foi cuidadosamente desenvolvido para oferecer uma experiência agradável e funcional para todos os amantes de café em Brasília. Explore, descubra e aproveite o melhor do café que a capital tem 
+O CapitalCoffee foi cuidadosamente desenvolvido para oferecer uma experiência agradável e funcional para todos os amantes de café em Brasília. Explore, descubra e aproveite o melhor do café que a capital tem!

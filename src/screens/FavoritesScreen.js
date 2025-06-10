@@ -1,9 +1,10 @@
 import React, { useContext, useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { FavoritosContext } from '../context/FavoritosContext';
+import { FontAwesome } from '@expo/vector-icons';
 
 const FavoritosScreen = ({ navigation }) => {
-  const { favoritos } = useContext(FavoritosContext);
+  const { favoritos, toggleFavorito } = useContext(FavoritosContext);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -26,10 +27,16 @@ const FavoritosScreen = ({ navigation }) => {
       {favoritos.map((cafe) => (
         <View key={cafe.id} style={styles.card}>
           <Image source={cafe.imagem} style={styles.cardImage} />
-          <Text style={styles.cafeName}>{cafe.nome}</Text>
+
+          <View style={styles.nameContainer}>
+            <Text style={styles.cafeName}>{cafe.nome}</Text>
+            <TouchableOpacity onPress={() => toggleFavorito(cafe)}>
+              <FontAwesome name="heart" size={24} color="#7a4e28" style={styles.icon} />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.cafeSubname}>{cafe.subtitulo}</Text>
         </View>
-        
       ))}
     </ScrollView>
   );
@@ -38,21 +45,46 @@ const FavoritosScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#e6ccb2', padding: 20, paddingTop: 50 },
   title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#5d2c04', textAlign: 'center' },
-  card: { backgroundColor: '#d8b49c',
+  card: {
+    backgroundColor: '#d8b49c',
     borderRadius: 20,
     marginBottom: 20,
     marginHorizontal: 20,
     padding: 10,
     width: 600,
-    alignSelf: 'center' },
-  cardImage: { width: 350,
+    alignSelf: 'center',
+  },
+  cardImage: {
+    width: 350,
     height: 200,
     borderRadius: 10,
-    marginBottom: 1,
-    alignSelf: 'center', },
-  cafeName: { fontSize: 16, fontWeight: 'bold', color: '#5d2c04' },
-  cafeSubname: { fontSize: 14, color: '#5d2c04' },
-  emptyText: { textAlign: 'center', fontSize: 16, marginTop: 100, color: '#5d2c04' },
+    marginBottom: 10,
+    alignSelf: 'center',
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+  },
+  icon: {
+    marginLeft: 8,
+  },
+  cafeName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#5d2c04',
+  },
+  cafeSubname: {
+    fontSize: 14,
+    color: '#5d2c04',
+  },
+  emptyText: {
+    textAlign: 'center',
+    fontSize: 16,
+    marginTop: 100,
+    color: '#5d2c04',
+  },
 });
 
 export default FavoritosScreen;

@@ -24,7 +24,7 @@ O CapitalCoffee foi projetado com funcionalidades essenciais para otimizar sua b
 
 • Menu Lateral (Drawer Navigation): 
  - Início: Retorna à tela principal de listagem de cafeterias.
- - Perfil: Acesse seus dados e edite seu nome. Basta clicar em "Editar Perfil" e salvar as alterações.
+ - Perfil: Acesse seus dados (nome e e-mail). Para alterar o nome, basta clicar em "Editar Perfil" e salvar as alterações.
  - Sair: Opção para fazer logout do aplicativo, com uma confirmação antes de retornar à tela de entrada.
 
 Público-Alvo

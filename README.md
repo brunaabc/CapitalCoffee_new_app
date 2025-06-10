@@ -3,6 +3,7 @@ CapitalCoffee: Descobrindo as Melhores Cafeterias de Brasília
 Se você é um verdadeiro entusiasta do café e está sempre em busca de novos lugares para saborear sua bebida favorita em Brasília, o CapitalCoffee é o aplicativo perfeito para você! Desenvolvido para conectar apaixonados por café às diversas cafeterias espalhadas pela capital, o CapitalCoffee oferece uma experiência intuitiva e completa para suas explorações cafeeiras.
 
 Propósito
+
 O principal objetivo do CapitalCoffee é ser o guia definitivo para os amantes de café em Brasília, facilitando a descoberta de novas cafeterias e o acesso a informações detalhadas sobre elas. Nosso foco é enriquecer a experiência do usuário, oferecendo um portal centralizado para explorar a vibrante cena cafeeira da cidade.
 
 Funcionalidades
@@ -30,7 +31,9 @@ Público-Alvo
 Este aplicativo é ideal para:
 
 • Amantes de Café: Indivíduos que apreciam uma boa xícara de café e buscam explorar novos sabores e ambientes.
+
 • Moradores de Brasília: Pessoas que residem na capital e desejam descobrir as cafeterias locais.
+
 • Turistas: Visitantes de Brasília que procuram dicas de cafeterias para incluir em seu roteiro.
 
 Tecnologias Utilizadas
